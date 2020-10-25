@@ -1,0 +1,69 @@
+{
+ "properties": {
+  "displayName": "[Preview]: Configure allowed Python packages for specified Azure Machine Learning computes",
+  "policyType": "BuiltIn",
+  "mode": "Microsoft.MachineLearningServices.Data",
+  "description": " This policy helps provide allowed Python packages in specified Azure Machine Learning computes and can be assigned at the workspace. For more information, visit https://aka.ms/amlpolicydoc.",
+  "metadata": {
+   "version": "1.0.0-preview",
+   "category": "Machine Learning",
+   "preview": true
+  },
+  "parameters": {
+   "computeNames": {
+    "type": "Array",
+    "metadata": {
+     "displayName": "[Preview]: Compute names where Azure ML jobs run",
+     "description": "List of compute names where this policy should be applied. Ex. cpu-cluster;gpu-cluster. If no value is provided to this parameter then policy is applicable to all computes."
+    },
+    "defaultValue": []
+   },
+   "allowedPythonPackageChannels": {
+    "type": "Array",
+    "metadata": {
+     "displayName": "[Preview]: Allowed Python package indexes",
+     "description": "List of allowed Python package indexes. Ex. http://somepythonindex.org "
+    },
+    "defaultValue": []
+   },
+   "effect": {
+    "type": "String",
+    "metadata": {
+     "displayName": "[Preview]: Effect",
+     "description": "Enable or disable the execution of the policy."
+    },
+    "allowedValues": [
+     "enforceSetting",
+     "disabled"
+    ],
+    "defaultValue": "enforceSetting"
+   }
+  },
+  "policyRule": {
+   "if": {
+    "anyOf": [
+     {
+      "field": "Microsoft.MachineLearningServices.Data/workspaces/computes/name",
+      "in": "[parameters('computeNames')]"
+     },
+     {
+      "value": "[length(parameters('computeNames'))]",
+      "equals": 0
+     }
+    ]
+   },
+   "then": {
+    "effect": "[parameters('effect')]",
+    "details": {
+     "setting": {
+      "name": "allowedPythonPackageChannels",
+      "value": "[parameters('allowedPythonPackageChannels')]"
+     }
+    }
+   }
+  }
+ },
+ "id": "/providers/Microsoft.Authorization/policyDefinitions/77eeea86-7e81-4a7d-9067-de844d096752",
+ "type": "Microsoft.Authorization/policyDefinitions",
+ "name": "77eeea86-7e81-4a7d-9067-de844d096752"
+}

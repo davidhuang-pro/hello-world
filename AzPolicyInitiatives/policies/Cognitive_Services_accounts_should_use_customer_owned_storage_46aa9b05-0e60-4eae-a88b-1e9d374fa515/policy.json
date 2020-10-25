@@ -1,0 +1,49 @@
+{
+ "properties": {
+  "displayName": "Cognitive Services accounts should use customer owned storage",
+  "policyType": "BuiltIn",
+  "mode": "Indexed",
+  "description": "This policy audits any Cognitive Services account not using customer owned storage.",
+  "metadata": {
+   "version": "1.0.0",
+   "category": "Cognitive Services"
+  },
+  "parameters": {
+   "effect": {
+    "type": "String",
+    "metadata": {
+     "displayName": "Effect",
+     "description": "The effect determines what happens when the policy rule is evaluated to match"
+    },
+    "allowedValues": [
+     "Audit",
+     "Deny",
+     "Disabled"
+    ],
+    "defaultValue": "Audit"
+   }
+  },
+  "policyRule": {
+   "if": {
+    "allOf": [
+     {
+      "field": "type",
+      "equals": "Microsoft.CognitiveServices/accounts"
+     },
+     {
+      "count": {
+       "field": "Microsoft.CognitiveServices/accounts/userOwnedStorage[*]"
+      },
+      "less": 1
+     }
+    ]
+   },
+   "then": {
+    "effect": "[parameters('effect')]"
+   }
+  }
+ },
+ "id": "/providers/Microsoft.Authorization/policyDefinitions/46aa9b05-0e60-4eae-a88b-1e9d374fa515",
+ "type": "Microsoft.Authorization/policyDefinitions",
+ "name": "46aa9b05-0e60-4eae-a88b-1e9d374fa515"
+}

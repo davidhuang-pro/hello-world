@@ -1,0 +1,30 @@
+{
+ "sku": {
+  "name": "A1",
+  "tier": "Standard"
+ },
+ "properties": {
+  "displayName": "Deploy Advanced Data Security on SQL servers",
+  "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/6134c3db-786f-471e-87bc-8f479dc890f6",
+  "scope": "/subscriptions/50adeb2d-bf5f-431f-bd02-60b070cb6c7b",
+  "notScopes": [],
+  "parameters": {},
+  "description": "",
+  "metadata": {
+   "createdBy": "f1bc9d4d-e75b-4e90-b852-d46703352d7c",
+   "createdOn": "2020-10-24T02:17:28.8090737Z",
+   "updatedBy": null,
+   "updatedOn": null
+  },
+  "enforcementMode": "Default"
+ },
+ "identity": {
+  "principalId": "3cfb2ee3-37f4-4217-b8d3-ed47ae6873b1",
+  "tenantId": "9e659e61-382b-4a6d-ae15-3cda99b26054",
+  "type": "SystemAssigned"
+ },
+ "id": "/subscriptions/50adeb2d-bf5f-431f-bd02-60b070cb6c7b/providers/Microsoft.Authorization/policyAssignments/08c8f136f23bd03898582920b9372c43c8b0160c0a07afde0d793e5b4bf7bce7",
+ "type": "Microsoft.Authorization/policyAssignments",
+ "name": "08c8f136f23bd03898582920b9372c43c8b0160c0a07afde0d793e5b4bf7bce7",
+ "location": "canadacentral"
+}

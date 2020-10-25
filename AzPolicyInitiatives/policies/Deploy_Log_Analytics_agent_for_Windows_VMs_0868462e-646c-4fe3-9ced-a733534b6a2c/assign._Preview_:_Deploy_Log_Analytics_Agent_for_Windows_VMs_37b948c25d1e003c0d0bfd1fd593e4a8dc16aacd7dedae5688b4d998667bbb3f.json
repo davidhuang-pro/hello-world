@@ -1,0 +1,37 @@
+{
+ "sku": {
+  "name": "A1",
+  "tier": "Standard"
+ },
+ "properties": {
+  "displayName": "[Preview]: Deploy Log Analytics Agent for Windows VMs",
+  "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/0868462e-646c-4fe3-9ced-a733534b6a2c",
+  "scope": "/subscriptions/50adeb2d-bf5f-431f-bd02-60b070cb6c7b",
+  "notScopes": [],
+  "parameters": {
+   "logAnalytics": {
+    "value": "logspaceWin"
+   },
+   "listOfImageIdToInclude": {
+    "value": []
+   }
+  },
+  "description": "",
+  "metadata": {
+   "createdBy": "f1bc9d4d-e75b-4e90-b852-d46703352d7c",
+   "createdOn": "2020-10-24T02:18:05.8720391Z",
+   "updatedBy": null,
+   "updatedOn": null
+  },
+  "enforcementMode": "Default"
+ },
+ "identity": {
+  "principalId": "47e60eec-0933-4c5d-a3cc-c9815c050462",
+  "tenantId": "9e659e61-382b-4a6d-ae15-3cda99b26054",
+  "type": "SystemAssigned"
+ },
+ "id": "/subscriptions/50adeb2d-bf5f-431f-bd02-60b070cb6c7b/providers/Microsoft.Authorization/policyAssignments/37b948c25d1e003c0d0bfd1fd593e4a8dc16aacd7dedae5688b4d998667bbb3f",
+ "type": "Microsoft.Authorization/policyAssignments",
+ "name": "37b948c25d1e003c0d0bfd1fd593e4a8dc16aacd7dedae5688b4d998667bbb3f",
+ "location": "canadacentral"
+}

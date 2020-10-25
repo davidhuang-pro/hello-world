@@ -1,0 +1,48 @@
+{
+ "properties": {
+  "displayName": "Container registries should be encrypted with a customer-managed key (CMK)",
+  "policyType": "BuiltIn",
+  "mode": "Indexed",
+  "description": "Audit container registries that do not have encryption enabled with customer-managed keys (CMK). Azure automatically encrypts registry contents at rest with service-managed keys. You can supplement default encryption with an additional encryption layer using a key that you create and manage in Azure Key Vault. For more information on CMK encryption, please visit: https://aka.ms/acr/CMK.",
+  "metadata": {
+   "version": "1.0.0",
+   "category": "Container Registry"
+  },
+  "parameters": {
+   "effect": {
+    "type": "String",
+    "metadata": {
+     "displayName": "Effect",
+     "description": "Enable or disable the execution of the policy"
+    },
+    "allowedValues": [
+     "Audit",
+     "Disabled"
+    ],
+    "defaultValue": "Audit"
+   }
+  },
+  "policyRule": {
+   "if": {
+    "allOf": [
+     {
+      "field": "type",
+      "equals": "Microsoft.ContainerRegistry/registries"
+     },
+     {
+      "not": {
+       "field": "Microsoft.ContainerRegistry/registries/encryption.status",
+       "equals": "enabled"
+      }
+     }
+    ]
+   },
+   "then": {
+    "effect": "[parameters('effect')]"
+   }
+  }
+ },
+ "id": "/providers/Microsoft.Authorization/policyDefinitions/5b9159ae-1701-4a6f-9a7a-aa9c8ddd0580",
+ "type": "Microsoft.Authorization/policyDefinitions",
+ "name": "5b9159ae-1701-4a6f-9a7a-aa9c8ddd0580"
+}

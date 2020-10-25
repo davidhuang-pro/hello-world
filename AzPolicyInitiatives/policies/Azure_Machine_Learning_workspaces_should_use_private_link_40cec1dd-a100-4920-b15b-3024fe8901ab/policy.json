@@ -1,0 +1,52 @@
+{
+ "properties": {
+  "displayName": "Azure Machine Learning workspaces should use private link",
+  "policyType": "BuiltIn",
+  "mode": "Indexed",
+  "description": "Evaluate Azure Machine Learning workspaces that do not have at least one approved private endpoint connection. Clients in a virtual network can securely access resources that have private endpoint connections through private links. For more information, visit: https://aka.ms/azureml-workspaces-privatelink.",
+  "metadata": {
+   "version": "1.0.0",
+   "category": "Machine Learning"
+  },
+  "parameters": {
+   "effect": {
+    "type": "String",
+    "metadata": {
+     "displayName": "Effect",
+     "description": "Enable or disable the execution of the policy"
+    },
+    "allowedValues": [
+     "Audit",
+     "Disabled"
+    ],
+    "defaultValue": "Audit"
+   }
+  },
+  "policyRule": {
+   "if": {
+    "allOf": [
+     {
+      "field": "type",
+      "equals": "Microsoft.MachineLearningServices/workspaces"
+     },
+     {
+      "count": {
+       "field": "Microsoft.MachineLearningServices/workspaces/privateEndpointConnections[*]",
+       "where": {
+        "field": "Microsoft.MachineLearningServices/workspaces/privateEndpointConnections[*].privateLinkServiceConnectionState.status",
+        "equals": "Approved"
+       }
+      },
+      "less": 1
+     }
+    ]
+   },
+   "then": {
+    "effect": "[parameters('effect')]"
+   }
+  }
+ },
+ "id": "/providers/Microsoft.Authorization/policyDefinitions/40cec1dd-a100-4920-b15b-3024fe8901ab",
+ "type": "Microsoft.Authorization/policyDefinitions",
+ "name": "40cec1dd-a100-4920-b15b-3024fe8901ab"
+}
